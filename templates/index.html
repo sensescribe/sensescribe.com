@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio-Visual Book Experience</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://kit.fontawesome.com/aa6753ef1b.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar_container">
+            <a href="/" id="navbar_logo"><img src="/static/sensescribelogo.svg" alt="Sensescribe Logo" style="height: 60px; width: auto; vertical-align: middle;">Sensescribe</a>
+            <div class="navbar_toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span the="bar"></span>
+            </div>
+            <ul class="navbar_menu">
+                <li class="navbar_item">
+                    <a href="javascript:void(0);" class="navbar_links">Project Details</a>
+                </li>
+                <li class="navbar_btn">
+                    <a href="javascript:void(0);" class="button">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  <div class="main">
+    <div class="main_container">
+        <div class="main_content">
+            <h1>Express emotion at<br> higher bandwidth,</h1>
+            <h2>text can only<br>say so much...</h2>
+        </div>
+        <div class="input_container">
+            <textarea id="textInput" placeholder="Enter your text here..." rows="10" cols="50"></textarea>
+            <div style="display: flex; align-items: left; margin-bottom: 1px;">
+                <span class="select-voice-label">Voice:</span>
+                <select id="voiceSelect">
+                    <option value="alloy">Alloy</option>
+                    <option value="echo">Echo</option>
+                    <option value="fable">Fable</option>
+                    <option value="onyx">Onyx</option>
+                    <option value="nova">Nova</option>
+                    <option value="shimmer">Shimmer</option>
+                </select>
+                <span class="select-style-label">Art Style:</span>
+                <select id="artStyleSelect">
+                    <option value="abstract">Abstract</option>
+                    <option value="realistic">Realistic</option>
+                    <option value="impressionist">Impressionist</option>
+                    <option value="surreal">Surreal</option>
+                    <option value="pop_art">Pop Art</option>
+                </select>
+                <span class="select-genre-label">Music Genre:</span>
+                <select id="musicGenreSelect">
+                    <option value="classical">Classical</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="rock">Rock</option>
+                    <option value="electronic">Electronic</option>
+                    <option value="ambient">Ambient</option>
+                </select>
+                <audio controls id="voiceExamplePlayer" class="styledAudio" style="flex: 1;">
+                    <source id="voiceExampleSource" src="" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+            <button id="generateButton">Generate</button>
+        </div>
+    </div>
+    <div class="outputContainer" style="display:none;"> 
+        <div id="loadingBar" class="loadingBar"></div>
+        <img id="outputImage" class="outputImage" alt="Generated visual" src="" style="max-width: 500px; height: auto;">
+        <audio controls id="generatedAudioPlayer" class="styledAudio"></audio>
+    </div>
+    <div class="services" id="servicesSection">
+        <h1>Project Details</h1>
+        <div class="services_container" id="servicesContainer">
+            <div class="services_card_a">
+                <div class="card_inner_a">
+                    <div class="card_front_a">
+                        <h2>Text to sense</h2>
+                    </div>
+                    <div class="card_back_a">
+                        <h4>How A.I. Can Convert Text to Sense</h4>
+                        <p><br>A.I offers solutions to transform text into multi-sensory experiences, enhancing how we perceive and interact with written content. By leveraging multiple models, text can be converted into immersive and customisable sensory outputs.<br>
+                            <br>By combining various models and databases, text can be transformed into a holistic sensory experience, catering to diverse learning styles and preferences. This innovation not only enhances storytelling but also makes content more accessible and engaging, offering a unique way to experience written words.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="services_card_b">
+                <div class="card_inner_b">
+                    <div class="card_front_b">    
+                        <h2>Concept Demonstration</h2>
+                    </div>
+                    <div class="card_back_b">
+                        <h4>Mechanism Behind the Demo Concept</h4>
+                        <p><br>1. Text: The user inputs text.<br> 
+                            <br>2. Speech: OpenAI TTS converts text into natural and expressive narration.<br>
+                            <br>3. Vision: Text processed by GPT-3.5 generates prompt for DALL-E to visualise.<br>
+                            <br>4. Music: GPT-4o requests a fitting instrumental from the Spotify API to complement the mood and context.<br>
+                            <br>5. Output: Combination of vision and audio converts text to multi-sensory experience.</p>
+                    </div>
+                </div>    
+            </div>
+            <div class="services_card_c">
+                <div class="card_inner_c">
+                    <div class="card_front_c">    
+                        <h2>Enhanced audio books</h2>
+                    </div>
+                    <div class="card_back_c">
+                        <h4>Project Aim</h4>
+                        <p>Sensescribe aims to revolutionise the experience of literature by integrating live imagery and music tailored to both the narrative, and user preferences.<br>
+                        <br>The service will combine the auditory immersion of traditional audiobooks with dynamic visual and musical elements to not only enrich the storytelling experience, but to also cater to diverse learning styles and preferences.<br>
+                        <br>the project aims to transcend limitations of text to advance the bandwith of the communication of information and emotion in a way that is comparable to the evolution of text itself.</p>
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>
+    <div class="footer_container" id="contact">
+        <div class="footer_logo">
+            <a href="/" id="footer_logo"><img src="/static/sensescribelogo.svg" alt="Sensescribe Logo" style="height: 100px; width: auto; vertical-align: middle;"><b>Sensescribe</b></a>
+        </div>
+        <div class="footer_links">
+            <div class="footer_link-items">
+                <!--<h3>Email</h3>-->
+                <a href="mailto:contact@sensescribe.com">contact@sensescribe.com</a>
+            </div>
+            <div class="social_icons">
+                <!--<h3>Social Media</h3>-->
+                <a href="https://X.com/sensescribe" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://tiktok.com/sensescribe" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="https://www.instagram.com/sensescribe/" class="social-icon-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+  </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
+   
