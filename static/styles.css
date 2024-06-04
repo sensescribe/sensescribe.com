@@ -437,59 +437,64 @@ audio::-webkit-media-controls-time-remaining-display {
     color: white; /* Ensures all control icons are light colored */
 }
 
-/* Use media queries if needed to handle responsiveness */
-@media screen and (max-width: 768px) {
-    .outputContainer {
-        flex-direction: column;
-    }
-}
-
-
-
-/*mobile responsive*/
-
-@media screen and (max-width: 768px) {
-    .main_container{
-        display: grid;
-        grid-template-columns: auto;
-        align-items: center;
-        justify-self: center;
-        width: 100%;
-        margin: 0 auto;
-        height: 90vh;
+/* For screens smaller than 960px */
+@media screen and (max-width: 960px) {
+    .main_container {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center elements */
+        justify-content: center; /* Center elements */
+        height: auto; /* Allow height to adjust based on content */
     }
 
     .main_content {
-        text-align: center;
-        margin-bottom: 4rem
+        width: 100%; /* Full width */
+        text-align: center; /* Center text */
+        transform: translateX(0); /* Reset transform */
+        padding: 20px; /* Add some padding */
     }
 
-    .main_content h1{
-        font-size: 2.5rem;
-        margin-top: 2rem;
+    .main_content h1, .main_content h2 {
+        font-size: 2rem; /* Adjust font size */
     }
 
-    .main_content h2{
-        font-size: 3rem;
+    .input_container {
+        width: 100%; /* Full width */
+        padding: 20px; /* Add some padding */
+        transform: translateY(0); /* Reset transform */
     }
 
-    .main_content p{
-        margin-top: 1rem;
-        font-size: 1.5rem;
+    textarea {
+        width: 100%; /* Full width */
+        height: 150px; /* Adjust height */
+    }
+
+    select {
+        width: 100%; /* Full width */
+        margin: 5px 0; /* Adjust margin */
+    }
+
+    button {
+        width: 100%; /* Full width */
+    }
+
+    .styledAudio {
+        width: 100%; /* Full width */
     }
 }
 
 @media screen and (max-width: 480px) {
-    .main_content h1{
-        font-size: 2rem;
-        margin-top: 3rem;
+    .main_content h1, .main_content h2 {
+        font-size: 1.5rem; /* Further adjust font size */
     }
 
-    .main_content h2{
-        font-size: 2rem;
+    textarea {
+        height: 100px; /* Further adjust height */
+    }
+
+    button {
+        font-size: 0.875rem; /* Adjust font size */
     }
 }
-
 /* Services section CSS */
 
 .services{
@@ -497,9 +502,11 @@ audio::-webkit-media-controls-time-remaining-display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    /*height: 100vh;*/
+    height: auto;
     transform: translateY(60px);
     overflow: hidden;
+    padding: 20px 0;
 }
 
 .services h1{
@@ -530,7 +537,7 @@ audio::-webkit-media-controls-time-remaining-display {
     margin: 1rem;
     height: 400px;
     width: 400px;
-    border-radius: 100px;
+    border-radius: 10px;
     position: relative;
     transition: transform 0.2s ease-in;
     background-size: cover;
@@ -594,67 +601,25 @@ audio::-webkit-media-controls-time-remaining-display {
     width: 100%;
     height: 100%;
     position: absolute;
-    backface-visibility: hidden; /* Hides the back side of the card when not facing the viewer */
-}
-
-.card_front_a{
-    background: url('/static/T1S.webp');
-    color: white;
+    backface-visibility: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-size: cover;
-    background-position: center bottom;
-    backface-visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
 }
 
-.card_front_b{
-    background: url('/static/logo.webp');
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-size: cover;
-    background-position: center top;
-    backface-visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
+/* Ensure the back side of the card is hidden by default */
+.card_back_a, .card_back_b, .card_back_c {
+    transform: rotateY(180deg);
 }
 
-.card_front_c{
-    background: url('/static/T2S.webp');
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-size: cover;
-    background-position: center bottom;
-    backface-visibility: hidden;
-    position: absolute;
-    width: 100%;
-    height: 100%;
+/* Flipping the card */
+.card_inner_a.is-flipped, .card_inner_b.is-flipped, .card_inner_c.is-flipped {
+    transform: rotateY(180deg);
 }
 
-.card_back_a{
-    background-color: #777777;
-}
-
-.card_back_b{
-    background-color: #777777;
-}
-
-.card_back_c{
-    background-color: #777777;
-}
-
-.card_back_a, .card_back_b, .card_back_c{
+/* Existing styles for card backs */
+.card_back_a, .card_back_b, .card_back_c {
     color: white;
     transform: rotateY(180deg);
     display: flex;
@@ -671,47 +636,67 @@ audio::-webkit-media-controls-time-remaining-display {
     text-align: center;
 }
 
-.card_back_a p, .card_back_b p, .card_back_c p{
-    margin: 0;  /* Removes default paragraph margin */
-    padding: 0;  /* Ensures no additional space is added */
-    max-width: 90%;  /* Limits width to ensure padding space */
-    word-wrap: break-word;  /* Ensures words do not overflow the card */
+/* Add background color to text for highlighting */
+.card_back_a p, .card_back_b p, .card_back_c p {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    padding: 10px; /* Add padding around text */
+    border-radius: 5px; /* Optional: adds rounded corners to the highlight */
+    display: inline-block; /* Ensures the background color only covers the text */
 }
 
-.card_inner_a.is-flipped, .card_inner_b.is-flipped, .card_inner_c.is-flipped {
-    transform: rotateY(180deg);
+/* Adjust h4 styling for better readability */
+.card_back_a h4, .card_back_b h4, .card_back_c h4 {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    padding: 10px; /* Add padding around heading */
+    border-radius: 5px; /* Optional: adds rounded corners to the highlight */
+    display: inline-block; /* Ensures the background color only covers the heading */
+    margin-bottom: 10px; /* Add margin to separate heading from text */
 }
 
-
-/* Responsive Design Adjustments */
-@media screen and (max-width: 960px) {
-    .services {
-        height: 1600px;
-    }
-    .services h1 {
-        font-size: 2rem;
-        margin-top: 12rem;
-    }
-    .services_card_a, .services_card_b, .services_card_c{
-        width: 300px;
-        background-position: center top;
-    }
-}
-
-
+/* For screens smaller than 480px */
 @media screen and (max-width: 480px) {
     .services {
-        height: 1400px;
+        height: auto;
+        padding: 10px 0;
     }
     .services h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
-    .services_card_a, .services_card_b, .services_card_c{
-        width: 300px;
-        background-position: center top;
+    .services_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .services_card_a, .services_card_b, .services_card_c {
+        width: 95%;
+        height: auto;
+        margin: 0.5rem 0;
+        background-size: cover;
+        border-radius: 10px;
+    }
+    .services_card_a h2, .services_card_b h2, .services_card_c h2 {
+        font-size: 1.2rem;
+        position: static;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    .card_front_a, .card_back_a,
+    .card_front_b, .card_back_b,
+    .card_front_c, .card_back_c {
+        height: auto;
+        background-size: contain;
+    }
+    .card_inner_a, .card_inner_b, .card_inner_c {
+        width: 100%;
+        height: auto;
+    }
+    .card_back_a p, .card_back_b p, .card_back_c p {
+        padding: 5px;
     }
 }
-
 
 /* Footer CSS */
 
@@ -722,7 +707,6 @@ audio::-webkit-media-controls-time-remaining-display {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: translateY(60px);
 }
 
 #footer_logo{
@@ -733,24 +717,27 @@ audio::-webkit-media-controls-time-remaining-display {
     text-decoration: none;
     font-size: 2rem;
     filter: invert(100%);
+    margin-bottom: 1rem;
 }
 
 .footer_links{
     width: 100%;
     max-width: 1000px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    text-align: center; 
 }
 
 .footer_link-items{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin: 16px;
     text-align: left;
     width: 160px;
     box-sizing:border-box;
-    transform: translateX(-50px);
 }
 
 .footer_link-items h3{
@@ -780,9 +767,10 @@ audio::-webkit-media-controls-time-remaining-display {
 
 .social_icons{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 240px;
+    width: 100%;
+    gap: 1rem;
 }
 
 .social_icons h3{
@@ -800,9 +788,40 @@ audio::-webkit-media-controls-time-remaining-display {
     margin-bottom: 0.5rem;
 }
 
-@media screen and (max-width:820px) {
+/*@media screen and (max-width:820px) {
     #footer_logo {
         margin-bottom: 2rem;
     }
+}*/
+
+@media screen and (max-width: 960px) {
+    .footer_links {
+        flex-direction: column;
+        align-items: center; /* Center-align items */
+        text-align: center; /* Center-align text */
+    }
+
+    .footer_link-items {
+        width: 100%;
+        margin: 10px 0; /* Adjusted margin */
+    }
 }
 
+@media screen and (max-width: 480px) {
+    .footer_container {
+        padding: 1rem 0; /* Adjusted padding */
+    }
+
+    .footer_link-items h3 {
+        font-size: 1rem; /* Adjusted font size */
+    }
+
+    .footer_link-items a {
+        font-size: 0.875rem; /* Adjusted font size */
+    }
+
+    .social-icons {
+        flex-direction: column;
+        gap: 0.5rem; /* Adjusted gap */
+    }
+}

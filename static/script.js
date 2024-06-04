@@ -1,5 +1,20 @@
-
 document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navbarMenu = document.querySelector('.navbar_menu');
+    const menuLinks = document.querySelectorAll('.navbar_links, .navbar_btn a');
+
+    mobileMenu.addEventListener('click', function() {
+        mobileMenu.classList.toggle('is-active');
+        navbarMenu.classList.toggle('active');
+    });
+
+    menuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('is-active');
+            navbarMenu.classList.remove('active');
+        });
+    });
+
     const voiceSelect = document.getElementById('voiceSelect');
     const artStyleSelect = document.getElementById('artStyleSelect');
     const musicGenreSelect = document.getElementById('musicGenreSelect');
@@ -126,4 +141,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
 
