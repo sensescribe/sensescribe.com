@@ -97,7 +97,7 @@ def combine_audio(tts_path, music_url):
 
         tts_audio = AudioSegment.from_file(tts_path)
         background_music = AudioSegment.from_file(music_path)
-        background_music = background_music - 18  # Reduce volume
+        background_music = background_music - 20  # Reduce volume
 
         while len(background_music) < len(tts_audio):
             background_music += background_music
@@ -115,6 +115,18 @@ def combine_audio(tts_path, music_url):
 def index():
     return render_template('index.html')
 
+@app.route('/generate_example', methods=['POST'])
+def generate_example():
+    data = request.get_json()
+    book_title = data['bookTitle']
+
+    example_description = test_openai.generate_example_description(book_title)
+    if not example_description:
+        return jsonify({'error': 'Failed to generate example description'}), 500
+
+    return jsonify({'exampleDescription': example_description})
+
+
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
@@ -127,7 +139,7 @@ def generate():
     tts_audio_path = '../static/output_audio.mp3'
     if not tts_audio_url:
         return jsonify({'error': 'Failed to generate audio'}), 500
-
+    
     scene_description = test_openai.generate_prompt_for_image(text, art_style)
     if not scene_description:
         return jsonify({'error': 'Failed to generate scene description'}), 500
@@ -157,4 +169,4 @@ def generate():
     return jsonify({'audioUrl': combined_audio_url, 'imageUrl': image_url})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

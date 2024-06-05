@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.0.4/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/PixiPlugin.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -36,7 +39,12 @@
             <h2>text was only <br>the beginning...</h2>
         </div>
         <div class="input_container">
-            <textarea id="textInput" placeholder="Paste or write an extract from literature..." rows="10" cols="50"></textarea>
+            <textarea id="textInput" placeholder="Enter an extract of text to sensescribe... 
+Or name a book in the box below and press example..." rows="10" cols="50"></textarea>
+            <div class="example_generator">
+                <input type="text" id="bookTitleInput" placeholder="E.g: War & Peace">
+                <button id="generateExampleButton">Example</button>
+            </div>  
             <div class="selection">
                 <div class="voice_selection">
                     <span class="select-voice-label">Voice:</span>
@@ -53,10 +61,16 @@
                     <span class="select-style-label">Art Style:</span>
                     <select id="artStyleSelect">
                         <option value="abstract">Abstract</option>
+                        <option value="renaissance">Renaissance</option>
                         <option value="realistic">Realistic</option>
                         <option value="impressionist">Impressionist</option>
                         <option value="surreal">Surreal</option>
+                        <option value="water colour">Water Colour</option>
                         <option value="pop_art">Pop Art</option>
+                        <option value="cartoon">Cartoon</option>
+                        <option value="anime">Anime</option>
+                        <option value="graffiti">Graffiti</option>
+                        <option value="film noir">Film Noir</option>
                     </select>
                 </div>
                 <div class="music_selection">
@@ -67,14 +81,17 @@
                         <option value="rock">Rock</option>
                         <option value="electronic">Electronic</option>
                         <option value="ambient">Ambient</option>
+                        <option value="LoFi">LoFi</option>
+                        <option value="trance">Trance</option>
+                        <option value="film score">Film Score</option>
                     </select>
                 </div>
                 <audio controls id="voiceExamplePlayer" class="styledAudio" style="flex: 1;">
                     <source id="voiceExampleSource" src="" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-            </div>
-            <button id="generateButton">Generate</button>
+            </div>          
+            <button id="generateButton">Sensescribe</button>
         </div>
     </div>
     <div class="outputContainer" style="display:none;"> 

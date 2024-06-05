@@ -282,6 +282,14 @@ select:focus {
     cursor: pointer;
 }
 
+
+.example_generator{
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    height: 25px;
+}
+
 button {
     width: 80%;
     padding: 10px 20px;

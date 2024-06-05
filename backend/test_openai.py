@@ -26,6 +26,23 @@ def generate_speech(text, voice='alloy'):
     except Exception as e:
         logger.error(f"An error occurred during speech generation: {e}")
         return None
+    
+def generate_example_description(book_title):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You generate vivid scene descriptions from literature. You only generate an extract from the literature named, and say nothing else."},
+                {"role": "user", "content": f"Generate an example of vivid scene description from '{book_title}'. It is important that you just return the extract and say nothing else."}
+            ]
+        )
+        logger.debug("Full API Response: %s", response)
+        example_description = response.choices[0].message.content.strip()
+        return example_description
+    except Exception as e:
+        logger.error(f"An error occurred during example generation: {e}")
+        return None
+
 
 def generate_prompt_for_image(text, art_style='abstract'):
     try:
