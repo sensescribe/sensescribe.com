@@ -33,36 +33,42 @@
     <div class="main_container">
         <div class="main_content">
             <h1>Express emotion at<br> higher bandwidth,</h1>
-            <h2>text can only<br>say so much...</h2>
+            <h2>text was only <br>the beginning...</h2>
         </div>
         <div class="input_container">
             <textarea id="textInput" placeholder="Enter your text here..." rows="10" cols="50"></textarea>
-            <div style="display: flex; align-items: left; margin-bottom: 1px;">
-                <span class="select-voice-label">Voice:</span>
-                <select id="voiceSelect">
-                    <option value="alloy">Alloy</option>
-                    <option value="echo">Echo</option>
-                    <option value="fable">Fable</option>
-                    <option value="onyx">Onyx</option>
-                    <option value="nova">Nova</option>
-                    <option value="shimmer">Shimmer</option>
-                </select>
-                <span class="select-style-label">Art Style:</span>
-                <select id="artStyleSelect">
-                    <option value="abstract">Abstract</option>
-                    <option value="realistic">Realistic</option>
-                    <option value="impressionist">Impressionist</option>
-                    <option value="surreal">Surreal</option>
-                    <option value="pop_art">Pop Art</option>
-                </select>
-                <span class="select-genre-label">Music Genre:</span>
-                <select id="musicGenreSelect">
-                    <option value="classical">Classical</option>
-                    <option value="jazz">Jazz</option>
-                    <option value="rock">Rock</option>
-                    <option value="electronic">Electronic</option>
-                    <option value="ambient">Ambient</option>
-                </select>
+            <div class="selection">
+                <div class="voice_selection">
+                    <span class="select-voice-label">Voice:</span>
+                    <select id="voiceSelect">
+                        <option value="alloy">Alloy</option>
+                        <option value="echo">Echo</option>
+                        <option value="fable">Fable</option>
+                        <option value="onyx">Onyx</option>
+                        <option value="nova">Nova</option>
+                        <option value="shimmer">Shimmer</option>
+                    </select>
+                </div>
+                <div class="art_selection">
+                    <span class="select-style-label">Art Style:</span>
+                    <select id="artStyleSelect">
+                        <option value="abstract">Abstract</option>
+                        <option value="realistic">Realistic</option>
+                        <option value="impressionist">Impressionist</option>
+                        <option value="surreal">Surreal</option>
+                        <option value="pop_art">Pop Art</option>
+                    </select>
+                </div>
+                <div class="music_selection">
+                    <span class="select-genre-label">Music Genre:</span>
+                    <select id="musicGenreSelect">
+                        <option value="classical">Classical</option>
+                        <option value="jazz">Jazz</option>
+                        <option value="rock">Rock</option>
+                        <option value="electronic">Electronic</option>
+                        <option value="ambient">Ambient</option>
+                    </select>
+                </div>
                 <audio controls id="voiceExamplePlayer" class="styledAudio" style="flex: 1;">
                     <source id="voiceExampleSource" src="" type="audio/mpeg">
                     Your browser does not support the audio element.
