@@ -11,7 +11,7 @@ examples = {
     "alloy": "To be, or not to be, that is the question.",
     "echo": "It was the best of times, it was the worst of times.",
     "fable": "All animals are equal, but some animals are more equal than others.",
-    "onyx": "Though I walk through the valley of the shadow of death, I will fear no evil; for You are with me; Your rod and Your staff, they comfort me.",
+    "onyx": "Though I walk through the valley of the shadow of death, I will fear no evil.",
     "nova": "In the beginning, God created the heavens and the earth.",
     "shimmer": "The only thing we have to fear is fear itself."
 }
