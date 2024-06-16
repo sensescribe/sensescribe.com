@@ -298,16 +298,15 @@ button {
     justify-content: center;
     font-size: 1rem;
     cursor: pointer;
-    /*background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);*/
     background-image: linear-gradient(to top, #20f8ff, #148dea 100%);
     color: white;
     border: none;
     border-radius: 8px;
-    margin-top: 5px; /* Adjusted margin for spacing */
+    margin-top: 5px;
     transition: all 0.35s;
     outline: none;
-    position: relative; /* Make sure position is relative */
-    overflow: hidden; /* This will prevent any overflow of the :after element */
+    position: relative; 
+    overflow: hidden; 
 }
 
 button:after {
@@ -343,13 +342,13 @@ button:hover:after {
 }
 
 .loadingBar {
-    width: 0%; /* Initial width of the loading bar */
-    height: 20px; /* Fixed height of the loading bar */
-    background-color: #4CAF50; /* Green color to indicate progress */
-    text-align: center; /* Center the text inside the bar */
-    line-height: 20px; /* Align text vertically */
-    color: white; /* Text color */
-    transition: width 0.5s ease-in-out; /* Smooth transition for width changes */
+    width: 0%;
+    height: 20px; 
+    background-color: #4CAF50;
+    text-align: center; 
+    line-height: 20px; 
+    color: white; 
+    transition: width 0.5s ease-in-out; 
 }
 
 
@@ -366,6 +365,35 @@ button:hover:after {
     overflow: hidden; /* Ensures the corners remain rounded */
     box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Subtle shadow for depth */
 }
+
+.share-buttons {
+    display: flex;
+    gap: 10px; 
+    justify-content: center; 
+    margin-top: 10px; 
+}
+
+.share-button {
+    background: linear-gradient(to top, #20f8ff, #148dea 100%);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.share-button:hover {
+    background: #4837ff;
+    color: white;
+}
+
+.share-button i {
+    margin-right: 5px;
+}
+
 
 #voiceExamplePlayer {
     display: none;
@@ -441,7 +469,6 @@ audio::-webkit-media-controls-time-remaining-display {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*height: 100vh;*/
     height: auto;
     transform: translateY(60px);
     overflow: hidden;
@@ -469,6 +496,7 @@ audio::-webkit-media-controls-time-remaining-display {
     justify-content: center;
     flex-wrap: wrap;
     overflow: hidden;
+    perspective: 1000px;
 }
 
 /* Base styles for services cards */
@@ -482,7 +510,7 @@ audio::-webkit-media-controls-time-remaining-display {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
-    perspective: 1000px;
+    overflow: hidden;
 }
 
 /* Hover effect common for both cards */
@@ -595,7 +623,52 @@ audio::-webkit-media-controls-time-remaining-display {
 /* For screens smaller than 480px */
 @media screen and (max-width: 480px) {
     .services {
-        display: none;
+        padding: 5px 0;
+    }
+
+    .services h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .services_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .services_card_a, .services_card_b, .services_card_c {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        /*width: 100%;
+        height: auto;
+        margin: 0.5rem 0;*/
+    }
+
+    .services_card_a:hover, .services_card_b:hover, .services_card_c:hover{
+        transform: scale(1);
+    }
+
+    .services_card_a h2, .services_card_b h2, .services_card_c h2 {
+        font-size: 1rem;
+        bottom: 10px;
+        width: 90%;
+        text-align: center;
+    }
+
+    .card_back_a, .card_back_b, .card_back_c {
+        padding: 10px;
+    }
+
+    .card_back_a h4, .card_back_b h4, .card_back_c h4 {
+        font-size: 1rem;
+        padding: 5px;
+    }
+
+    .card_back_a p, .card_back_b p, .card_back_c p {
+        font-size: 0.875rem;
+        padding: 5px;
     }
 }
 

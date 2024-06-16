@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sensescribe</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script src="https://kit.fontawesome.com/aa6753ef1b.js" crossorigin="anonymous"></script>
@@ -49,12 +49,45 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                 <div class="voice_selection">
                     <span class="select-voice-label">Voice:</span>
                     <select id="voiceSelect">
-                        <option value="alloy">Alloy</option>
-                        <option value="echo">Echo</option>
-                        <option value="fable">Fable</option>
-                        <option value="onyx">Onyx</option>
-                        <option value="nova">Nova</option>
-                        <option value="shimmer">Shimmer</option>
+                        <optgroup label="U.S Male">
+                            <option value="Antoni">Antoni</option>
+                            <option value="Arnold">Arnold</option>
+                            <option value="Callum">Callum</option>
+                            <option value="Charlie">Charlie</option>
+                            <option value="Clyde">Clyde</option>
+                            <option value="Drew">Drew</option>
+                            <option value="Fin">Fin</option>
+                            <option value="Harry">Harry</option>
+                            <option value="James">James</option>
+                            <option value="Jeremy">Jeremy</option>
+                            <option value="Joseph">Joseph</option>
+                            <option value="Josh">Josh</option>
+                            <option value="Liam">Liam</option>
+                            <option value="Michael">Michael</option>
+                            <option value="onyx">Onyx</option>
+                            <option value="Patrick">Patrick</option>
+                            <option value="Paul">Paul</option>
+                        </optgroup>
+                        <optgroup label="U.S Female">
+                            <option value="alloy">Alloy</option>
+                            <option value="Domi">Domi</option>
+                            <option value="echo">Echo</option>
+                            <option value="Elli">Elli</option>
+                            <option value="Emily">Emily</option>
+                            <option value="Matilda">Matilda</option>
+                            <option value="Rachel">Rachel</option>
+                            <option value="Sarah">Sarah</option>
+                            <option value="shimmer">Shimmer</option>
+                        </optgroup>
+                        <optgroup label="U.K Male">
+                            <option value="Dave">Dave</option>
+                            <option value="George">George</option>
+                        </optgroup>
+                        <optgroup label="U.K Female">
+                            <option value="Charlotte">Charlotte</option>
+                            <option value="Dorothy">Dorothy</option>
+                            <option value="fable">Fable</option>
+                        </optgroup>
                     </select>
                 </div>
                 <div class="art_selection">
@@ -69,6 +102,7 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                         <option value="pop_art">Pop Art</option>
                         <option value="cartoon">Cartoon</option>
                         <option value="anime">Anime</option>
+                        <option value="pixar">Pixar</option>
                         <option value="graffiti">Graffiti</option>
                         <option value="film noir">Film Noir</option>
                     </select>
@@ -98,6 +132,12 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
         <div id="loadingBar" class="loadingBar"></div>
         <img id="outputImage" class="outputImage" alt="Generated visual" src="" style="max-width: 500px; height: auto;">
         <audio controls id="generatedAudioPlayer" class="styledAudio"></audio>
+        <video controls id="generatedVideoPlayer" class="styledVideo" style="max-width: 500px; height: auto; display: none;"></video>
+        <div class="share-buttons" style="display:none;">
+            <a id="downloadAButton" href="#" download="sensescribe_output.mp3" class="share-button">Download Audio</a>
+            <a id="downloadVButton" href="#" download="sensescribe_output.mp4" class="share-button">Download Video</a>
+            <a id="shareX" href="#" target="_blank" class="share-button"><i class="fa-brands fa-x-twitter"></i> Share on X</a>
+        </div>        
     </div>
     <div class="services" id="servicesSection">
         <h1>Project Details</h1>
@@ -110,7 +150,7 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                     <div class="card_back_a">
                         <h4>How A.I. Can Convert Text to Sense</h4>
                         <p><br>A.I offers solutions to transform text into multi-sensory experiences, enhancing how we perceive and interact with written content. By leveraging multiple models, text can be converted into immersive and customisable sensory outputs.<br>
-                            <br>By combining various models and databases, text can be transformed into a holistic sensory experience, catering to diverse learning styles and preferences. This innovation not only enhances storytelling but also makes content more accessible and engaging, offering a unique way to experience written words.</p>
+                            <br>By transforming text into a holistic sensory experience, literature can cater to more diverse learning styles and preferences. This innovation not only enhances storytelling but also makes content more accessible and engaging, offering a unique way to experience written words.</p>
                     </div>
                 </div>
             </div>
@@ -121,11 +161,11 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                     </div>
                     <div class="card_back_b">
                         <h4>Mechanism Behind the Demo Concept</h4>
-                        <p><br>1. Text: The user inputs text.<br> 
-                            <br>2. Speech: OpenAI TTS converts text into natural and expressive narration.<br>
-                            <br>3. Vision: Text processed by GPT-3.5 generates prompt for DALL-E to visualise.<br>
-                            <br>4. Music: GPT-4o requests a fitting instrumental from the Spotify API to complement the mood and context.<br>
-                            <br>5. Output: Combination of vision and audio converts text to multi-sensory experience.</p>
+                        <p><br>1. Input: Text is inserted, or an extract from chosen literature is generated by GPT-4o.<br> 
+                            <br>2. Speech: Elevenlabs or OpenAI TTS models convert text into narration.<br>
+                            <br>3. Vision: The text is translated by GPT-4o into a prompt for DALL-E to visualise.<br>
+                            <br>4. Music: GPT-4o requests an instrumental of the user-chosen genre from the Spotify API to complement the mood and context.<br>
+                            <br>5. Output: A combination of vision and audio converts text into a multi-sensory output.</p>
                     </div>
                 </div>    
             </div>
@@ -136,9 +176,9 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                     </div>
                     <div class="card_back_c">
                         <h4>Project Aim</h4>
-                        <p>Sensescribe aims to revolutionise the experience of literature by integrating live imagery and music tailored to both the narrative, and user preferences.<br>
-                        <br>The service will combine the auditory immersion of traditional audiobooks with dynamic visual and musical elements to not only enrich the storytelling experience, but to also cater to diverse learning styles and preferences.<br>
-                        <br>the project aims to transcend limitations of text to advance the bandwith of the communication of information and emotion in a way that is comparable to the evolution of text itself.</p>
+                        <p>Sensescribe aims to ehance the experience of literature by integrating live imagery and music tailored to both the contextual narrative, and user preferences.<br>
+                        <br>The service will combine the auditory immersion of traditional audiobooks with dynamic visual and musical elements to enrich the experience, and cater to diverse learning styles and preferences.<br>
+                        <br>The project aims to transcend limitations of text to advance the bandwith of the communication of information and emotion.</p>
                     </div>
                 </div>    
             </div>

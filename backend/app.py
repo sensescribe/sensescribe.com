@@ -8,6 +8,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 from pydub import AudioSegment
 import time
+import subprocess
 
 load_dotenv()
 
@@ -15,7 +16,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-app = Flask(__name__, static_folder='../static', template_folder='../templates')
+app = Flask(__name__, static_folder='../static', static_url_path='/static', template_folder='../templates')
 
 # Set up Spotify API credentials
 
@@ -87,17 +88,22 @@ def search_spotify_for_track(track_description, music_genre, retries=3):
             continue
     return None
 
-def combine_audio(tts_path, music_url):
+
+def combine_audio(tts_path, music_url, image_path):
     try:
+        # Download the music file
         music_response = requests.get(music_url)
         music_response.raise_for_status()
         music_path = '../static/background_music.mp3'
         with open(music_path, 'wb') as f:
             f.write(music_response.content)
+        logger.info(f"Music downloaded and saved to {music_path}")
 
+
+        # Load the audio files
         tts_audio = AudioSegment.from_file(tts_path)
         background_music = AudioSegment.from_file(music_path)
-        background_music = background_music - 20  # Reduce volume
+        background_music = background_music - 19  # Reduce volume
 
         while len(background_music) < len(tts_audio):
             background_music += background_music
@@ -106,9 +112,51 @@ def combine_audio(tts_path, music_url):
         combined_audio = tts_audio.overlay(background_music)
         combined_audio_path = '../static/combined_audio.mp3'
         combined_audio.export(combined_audio_path, format="mp3")
-        return '/static/combined_audio.mp3'
+        logger.info(f"Combined audio saved to {combined_audio_path}")
+
+        # Create video from image and combined audio
+        video_path = '../static/output_video.mp4'
+        result = create_video_from_image_and_audio(image_path, combined_audio_path, video_path)
+        if result:
+            logger.info(f"Video created and saved to {video_path}")
+        else:
+            logger.error("Failed to create video")
+
+        return '/static/combined_audio.mp3', '/static/output_video.mp4'
     except Exception as e:
         logger.error(f"An error occurred while combining audio: {e}")
+        return None, None
+
+def create_video_from_image_and_audio(image_path, audio_path, output_video_path):
+    try:
+        if not os.path.exists(image_path):
+            logger.error(f"Image file does not exist: {image_path}")
+            return None
+        if not os.path.exists(audio_path):
+            logger.error(f"Audio file does not exist: {audio_path}")
+            return None
+        # Use ffmpeg to combine image and audio into a video
+        command = [
+            'ffmpeg',
+            '-loop', '1',
+            '-i', image_path,
+            '-i', audio_path,
+            '-c:v', 'libx264',
+            '-c:a', 'aac',
+            '-strict', 'experimental',
+            '-b:a', '192k',
+            '-pix_fmt', 'yuv420p',
+            '-shortest',
+            '-y',  # Overwrite output file if it exists
+            output_video_path
+        ]
+        logger.info(f"Running FFmpeg command: {' '.join(command)}")
+        result = subprocess.run(command, check=True, capture_output=True, text=True)
+        logger.info(f"FFmpeg output: {result.stdout}")
+        return output_video_path
+    except subprocess.CalledProcessError as e:
+        logger.error(f"An error occurred while creating video: {e}")
+        logger.error(f"FFmpeg error output: {e.stderr}")
         return None
 
 @app.route('/')
@@ -127,13 +175,26 @@ def generate_example():
     return jsonify({'exampleDescription': example_description})
 
 
+
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
     text = data['text']
     voice = data.get('voice', 'alloy')
+    service = data.get('service', 'openai')
     art_style = data.get('artStyle', 'abstract')
     music_genre = data.get('musicGenre', 'classical')
+    
+    if voice in test_openai.openai_voices:
+        service = 'openai'
+    elif voice in test_openai.elevenlabs_voices:
+        service = 'elevenlabs'
+    else:
+        return jsonify({'error': 'Invalid voice selected'}), 400
+    
+    tts_audio_url = test_openai.generate_speech(text, voice)
+    if not tts_audio_url:
+        return jsonify({'error': 'Failed to generate audio'}), 500
 
     tts_audio_url = test_openai.generate_speech(text, voice)
     tts_audio_path = '../static/output_audio.mp3'
@@ -147,6 +208,15 @@ def generate():
     image_url = test_openai.generate_image(scene_description)
     if not image_url:
         return jsonify({'error': 'Failed to generate image'}), 500
+    
+    try:
+        image_response = requests.get(image_url)
+        image_response.raise_for_status()
+        local_image_path = '../static/output_image.png'
+        with open(local_image_path, 'wb') as f:
+            f.write(image_response.content)
+    except Exception as e:
+        return jsonify({'error': 'Failed to download image'}), 500
 
     music_description = test_openai.generate_music_prompt(text, music_genre)
     logger.info(f"Generated music description: {music_description}")
@@ -161,12 +231,18 @@ def generate():
     music_url = search_spotify_for_track(music_description, music_genre)
     if not music_url:
         return jsonify({'error': 'Failed to find a suitable music track'}), 500
-
-    combined_audio_url = combine_audio(tts_audio_path, music_url)
-    if not combined_audio_url:
-        return jsonify({'error': 'Failed to combine audio'}), 500
-
-    return jsonify({'audioUrl': combined_audio_url, 'imageUrl': image_url})
+    
+    combined_audio_url, video_url = combine_audio(tts_audio_path, music_url, local_image_path)
+    if not combined_audio_url or not video_url:
+        return jsonify({'error': 'Failed to combine audio and create video'}), 500
+    
+    # Generate full URLs for sharing
+    base_url = request.url_root.rstrip('/')
+    full_audio_url = f"{base_url}/static/combined_audio.mp3"
+    full_image_url = f"{base_url}/static/output_image.png"
+    full_video_url = f"{base_url}/static/output_video.mp4"
+    
+    return jsonify({'audioUrl': full_audio_url, 'imageUrl': full_image_url, 'videoUrl': full_video_url})
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
