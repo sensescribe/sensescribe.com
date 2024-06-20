@@ -128,13 +128,45 @@ def generate_image(scene_description):
     except Exception as e:
         logger.error(f"An error occurred during image generation: {e}")
         return None
+    
+def generate_soundfx_prompt(text):
+    try:
+        response = openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": f"You are an assistant that translates text into a very short prompt for the elevenlabs text to sound effects API. describe a sound effect that complements the mood and context of the scene described by the text, and ensure the maximum length is a single sentence of a few words."},
+                {"role": "user", "content": f"Translate the following text into a brief sound effects prompt: {text}"}
+            ]
+        )
+        soundfx_prompt = response.choices[0].message.content.strip()
+        return soundfx_prompt
+    except Exception as e:
+        logger.error(f"An error occurred during music prompt generation: {e}")
+        return None
+    
+def generate_sound_effect(soundfx_prompt):
+    try:
+        result = elevenlabs_client.text_to_sound_effects.convert(
+            text=soundfx_prompt,
+            duration_seconds=10,  # Optional, if not provided will automatically determine the correct length
+            prompt_influence=0.3,  # Optional, if not provided will use the default value of 0.3
+        )
+        audio_path = Path('../static/fx_audio_elevenlabs.mp3')
+        with open(audio_path, "wb") as f:
+            for chunk in result:
+                f.write(chunk)
+        logger.info("Sound effect generated and saved as %s", audio_path)
+        return '/static/fx_audio_elevenlabs.mp3'
+    except Exception as e:
+        logger.error(f"An error occurred during sound effect generation: {e}")
+        return None
 
 def generate_music_prompt(text, music_genre='classical'):
     try:
         response = openai_client.chat.completions.create(
             model="gpt-4o",
             messages=[
-                {"role": "system", "content": f"You are an assistant that helps select real instrumental {music_genre} songs suitable for the specific scene described in the following text. Ensure that both the track and artist are real, verifiable, and popular. Provide the result in the format: track:<track> artist:<artist>."},
+                {"role": "system", "content": f"You are an assistant that helps select real instrumental {music_genre} songs suitable for the specific scene described in the following text. Search the web, and ensure that both the track and artist are real, verifiable, and popular. Provide the result in the format: track:<track> artist:<artist>."},
                 {"role": "user", "content": text}
             ]
         )

@@ -46,85 +46,100 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
                 <button id="generateExampleButton">Example</button>
             </div>  
             <div class="selection">
-                <div class="voice_selection">
-                    <span class="select-voice-label">Voice:</span>
-                    <select id="voiceSelect">
-                        <optgroup label="U.S Male">
-                            <option value="Antoni">Antoni</option>
-                            <option value="Arnold">Arnold</option>
-                            <option value="Callum">Callum</option>
-                            <option value="Charlie">Charlie</option>
-                            <option value="Clyde">Clyde</option>
-                            <option value="Drew">Drew</option>
-                            <option value="Fin">Fin</option>
-                            <option value="Harry">Harry</option>
-                            <option value="James">James</option>
-                            <option value="Jeremy">Jeremy</option>
-                            <option value="Joseph">Joseph</option>
-                            <option value="Josh">Josh</option>
-                            <option value="Liam">Liam</option>
-                            <option value="Michael">Michael</option>
-                            <option value="onyx">Onyx</option>
-                            <option value="Patrick">Patrick</option>
-                            <option value="Paul">Paul</option>
-                        </optgroup>
-                        <optgroup label="U.S Female">
-                            <option value="alloy">Alloy</option>
-                            <option value="Domi">Domi</option>
-                            <option value="echo">Echo</option>
-                            <option value="Elli">Elli</option>
-                            <option value="Emily">Emily</option>
-                            <option value="Matilda">Matilda</option>
-                            <option value="Rachel">Rachel</option>
-                            <option value="Sarah">Sarah</option>
-                            <option value="shimmer">Shimmer</option>
-                        </optgroup>
-                        <optgroup label="U.K Male">
-                            <option value="Dave">Dave</option>
-                            <option value="George">George</option>
-                        </optgroup>
-                        <optgroup label="U.K Female">
-                            <option value="Charlotte">Charlotte</option>
-                            <option value="Dorothy">Dorothy</option>
-                            <option value="fable">Fable</option>
-                        </optgroup>
-                    </select>
+                <div class="selection_a">
+                    <div class="voice_selection">
+                        <span class="select-voice-label">Narration:</span>
+                        <select id="voiceSelect">
+                            <option value="none">None</option>
+                            <optgroup label="U.S Male">
+                                <option value="Antoni">Antoni</option>
+                                <option value="Arnold">Arnold</option>
+                                <option value="Callum">Callum</option>
+                                <option value="Charlie">Charlie</option>
+                                <option value="Clyde">Clyde</option>
+                                <option value="Drew">Drew</option>
+                                <option value="Fin">Fin</option>
+                                <option value="Harry">Harry</option>
+                                <option value="James">James</option>
+                                <option value="Jeremy">Jeremy</option>
+                                <option value="Joseph">Joseph</option>
+                                <option value="Josh">Josh</option>
+                                <option value="Liam">Liam</option>
+                                <option value="Michael">Michael</option>
+                                <option value="onyx">Onyx</option>
+                                <option value="Patrick">Patrick</option>
+                                <option value="Paul">Paul</option>
+                            </optgroup>
+                            <optgroup label="U.S Female">
+                                <option value="alloy">Alloy</option>
+                                <option value="Domi">Domi</option>
+                                <option value="echo">Echo</option>
+                                <option value="Elli">Elli</option>
+                                <option value="Emily">Emily</option>
+                                <option value="Matilda">Matilda</option>
+                                <option value="Rachel">Rachel</option>
+                                <option value="Sarah">Sarah</option>
+                                <option value="shimmer">Shimmer</option>
+                            </optgroup>
+                            <optgroup label="U.K Male">
+                                <option value="Dave">Dave</option>
+                                <option value="George">George</option>
+                            </optgroup>
+                            <optgroup label="U.K Female">
+                                <option value="Charlotte">Charlotte</option>
+                                <option value="Dorothy">Dorothy</option>
+                                <option value="fable">Fable</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="art_selection">
+                        <span class="select-style-label">Illustration:</span>
+                        <select id="artStyleSelect">
+                            <option value="none">None</option>
+                            <option value="abstract">Abstract</option>
+                            <option value="renaissance">Renaissance</option>
+                            <option value="realistic">Realistic</option>
+                            <option value="impressionist">Impressionist</option>
+                            <option value="surreal">Surreal</option>
+                            <option value="water colour">Water Colour</option>
+                            <option value="pop_art">Pop Art</option>
+                            <option value="cartoon">Cartoon</option>
+                            <option value="anime">Anime</option>
+                            <option value="pixar">Pixar</option>
+                            <option value="graffiti">Graffiti</option>
+                            <option value="film noir">Film Noir</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="art_selection">
-                    <span class="select-style-label">Art Style:</span>
-                    <select id="artStyleSelect">
-                        <option value="abstract">Abstract</option>
-                        <option value="renaissance">Renaissance</option>
-                        <option value="realistic">Realistic</option>
-                        <option value="impressionist">Impressionist</option>
-                        <option value="surreal">Surreal</option>
-                        <option value="water colour">Water Colour</option>
-                        <option value="pop_art">Pop Art</option>
-                        <option value="cartoon">Cartoon</option>
-                        <option value="anime">Anime</option>
-                        <option value="pixar">Pixar</option>
-                        <option value="graffiti">Graffiti</option>
-                        <option value="film noir">Film Noir</option>
-                    </select>
+                <div class="selection_b">
+                    <div class="music_selection">
+                        <span class="select-genre-label">Music:</span>
+                        <select id="musicGenreSelect">
+                            <option value="none">None</option>
+                            <option value="classical">Classical</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="rock">Rock</option>
+                            <option value="electronic">Electronic</option>
+                            <option value="ambient">Ambient</option>
+                            <option value="LoFi">LoFi</option>
+                            <option value="trance">Trance</option>
+                            <option value="film score">Film Score</option>
+                        </select>
+                    </div>
+                    <div class="soundFX_selection">
+                        <span class="select-soundFX-label">SoundFX:</span>
+                        <select id="soundFxSelect">
+                            <option value="none">None</option>
+                            <option value="include">include</option>
+                        </select>
+                    </div>           
+                    <audio controls id="voiceExamplePlayer" class="styledAudio" style="flex: 1;">
+                        <source id="voiceExampleSource" src="" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
                 </div>
-                <div class="music_selection">
-                    <span class="select-genre-label">Music Genre:</span>
-                    <select id="musicGenreSelect">
-                        <option value="classical">Classical</option>
-                        <option value="jazz">Jazz</option>
-                        <option value="rock">Rock</option>
-                        <option value="electronic">Electronic</option>
-                        <option value="ambient">Ambient</option>
-                        <option value="LoFi">LoFi</option>
-                        <option value="trance">Trance</option>
-                        <option value="film score">Film Score</option>
-                    </select>
-                </div>
-                <audio controls id="voiceExamplePlayer" class="styledAudio" style="flex: 1;">
-                    <source id="voiceExampleSource" src="" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                </audio>
-            </div>          
+            </div>
+            <div id="error-message" style="color: red; display: none;"></div>          
             <button id="generateButton">Sensescribe</button>
         </div>
     </div>
@@ -135,8 +150,6 @@ Or name a book in the box below and press example..." rows="10" cols="50"></text
         <video controls id="generatedVideoPlayer" class="styledVideo" style="max-width: 500px; height: auto; display: none;"></video>
         <div class="share-buttons" style="display:none;">
             <a id="downloadAButton" href="#" download="sensescribe_output.mp3" class="share-button">Download Audio</a>
-            <a id="downloadVButton" href="#" download="sensescribe_output.mp4" class="share-button">Download Video</a>
-            <a id="shareX" href="#" target="_blank" class="share-button"><i class="fa-brands fa-x-twitter"></i> Share on X</a>
         </div>        
     </div>
     <div class="services" id="servicesSection">

@@ -153,6 +153,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    text-align: justify;
 }
 
 .main_content h2{
@@ -164,6 +165,7 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     -moz-text-fill-color: transparent;
+    text-align: justify;
 }
 
 @keyframes slideInFromTop {
@@ -221,7 +223,19 @@ textarea {
 .selection {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
+}
+
+.selection_a {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.selection_b {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .voice_selection{
@@ -239,6 +253,11 @@ textarea {
     flex-direction: column;
 }
 
+.soundFX_selection{
+    display: flex;
+    flex-direction: column;
+}
+
 .select-voice-label {
     font-size: 14px;
     color: #ffffff; 
@@ -250,6 +269,11 @@ textarea {
 }
 
 .select-genre-label {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.select-soundFX-label {
     color: #ffffff;
     font-size: 14px;
 }
@@ -422,8 +446,8 @@ audio::-webkit-media-controls-time-remaining-display {
 
     .main_content {
         width: 100%; 
-        text-align: center; 
-        transform: translateX(0); 
+        text-align: justify; 
+        transform: translateX(75px); 
         padding: 20px; 
     }
 
@@ -432,7 +456,7 @@ audio::-webkit-media-controls-time-remaining-display {
     }
 
     .main_content h2 {
-        font-size: 1.5rem; 
+        font-size: 1.5rem;
     }
 
     .input_container {
@@ -447,6 +471,16 @@ audio::-webkit-media-controls-time-remaining-display {
     textarea {
         width: 100%; 
         height: 200px; 
+    }
+
+    .selection_a {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .selection_b {
+        display: flex;
+        flex-direction: column;
     }
 
     .voice_selection {
@@ -598,26 +632,27 @@ audio::-webkit-media-controls-time-remaining-display {
     width: 100%;
     height: 100%;
     background-position: top center;
-    padding: 20px;  /* Adds padding to avoid text touching the edges */
-    box-sizing: border-box; /* Ensures padding is included in width/height calculations */
+    padding: 20px;  
+    box-sizing: border-box; 
     text-align: center;
 }
 
-/* Add background color to text for highlighting */
+
 .card_back_a p, .card_back_b p, .card_back_c p {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    padding: 10px; /* Add padding around text */
-    border-radius: 5px; /* Optional: adds rounded corners to the highlight */
-    display: inline-block; /* Ensures the background color only covers the text */
+    background-color: rgba(0, 0, 0, 0.8); 
+    padding: 10px; 
+    border-radius: 5px;
+    display: inline-block; 
+    text-align: justify;
 }
 
 /* Adjust h4 styling for better readability */
 .card_back_a h4, .card_back_b h4, .card_back_c h4 {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    padding: 10px; /* Add padding around heading */
-    border-radius: 5px; /* Optional: adds rounded corners to the highlight */
-    display: inline-block; /* Ensures the background color only covers the heading */
-    margin-bottom: 10px; /* Add margin to separate heading from text */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    margin-bottom: 10px;
 }
 
 /* For screens smaller than 480px */
