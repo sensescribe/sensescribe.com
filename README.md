@@ -1,4 +1,3 @@
-- Hi, I'm Barney, creator of @sensescribe
 - I'm interested in enhancing books with A.I., and more broadly, making language more sensory.
 - I'm looking to collaborate on creating a visual-musical-audiobook experience, customisable to the user's unique blend of tastes in music, art, and books.
 - My initial inspiration for this idea was a perpetual switch between Audible and Spotify on commutes.
